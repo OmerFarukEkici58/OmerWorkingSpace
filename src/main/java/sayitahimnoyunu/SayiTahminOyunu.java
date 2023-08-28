@@ -17,22 +17,32 @@ public class SayiTahminOyunu {
     9)Tekrarla
     */
     public static void main(String[] args) {
+        //1.Adım
+        System.out.println("***SAYI TAHMİN OYUNU***\n" +
+                "\n" +
+                "Nasıl Oynanır?\n" +
+                "\n" +
+                "*Dört basamaklı sayı tahmin oyunu.\n" +
+                "*Oyun başında üretilen 4 basamaklı bir sayıyı tahmin ederek oynanır.\n" +
+                "*Oluşturulan bu 4 basamaklı sayının her basamağı bir birinden farklıdır.\n" +
+                "*Oyuncu da aynı kurallara tabi olarak bir tahmin yapar.\n" +
+                "*Her tahmin sonunda oyuncuya 2 ipucu verilir. Bu ipuçlarının biri Doğru Yer diğeri ise Farklı Yer olarak isimlendirilmiştir.\n" +
+                "*Doğru Yer: Tahmin edilen sayının içerisindeki rakamların kaç tanesinin tam olarak doğru yere yazıldığını gösterir.\n" +
+                "*Farklı Yer: Kaç tane rakamın üretilen sayı içerisinde bulunduğunu gösterir. Yani tahmin edilen sayıda doğru rakamlar vardır ama yerleri yanlıştır.\n" +
+                "*100 Puan ile başlarsınız her yanlış tahmin de 10 puan kaybedersiniz 0 puan da oyunu kaybedersiniz.\n" +
+                "*İşte Bu Kadar! Hadi şimdi oynamaya başla ve sayıyı bulmaya çalış.\n");
         //2.Adım
         int uretilenSayi = uretRakamlariFarkliSayi(4);
-        System.out.println("uretilenSayi = " + uretilenSayi);
         //3.Adım
         ArrayList<Integer> uretilenSayiBasamaklar = new ArrayList<>();
         uretilenSayiBasamaklar = basamklariAyir(uretilenSayi);
-        for (int basamak : uretilenSayiBasamaklar) {
-            System.out.println(basamak);
-        }
         int puan = 100;
-        while (puan != -100) {
+        while (puan != 0) {
             System.out.println("Mevcut Puanınız : " + puan);
             boolean tahminKontrol = false;
             //4.Adım
             Scanner input = new Scanner(System.in);
-            System.out.println("Lütfen Kurallara Uygun Bir Tahmin Giriniz : ");
+            System.out.print("Lütfen Kurallara Uygun Bir Tahmin Giriniz : ");
             int tahmin = input.nextInt();
             //5.Adım
             ArrayList<Integer> tahminSayiBasamaklar = new ArrayList<>();
@@ -42,7 +52,7 @@ public class SayiTahminOyunu {
                 tahminKontrol = true;
             }
             while (!tahminKontrol) {
-                System.out.println("Lütfen Kurallara Uygun Bir Tahmin Giriniz : ");
+                System.out.print("Lütfen Kurallara Uygun Bir Tahmin Giriniz : ");
                 tahmin = input.nextInt();
                 //5.Adım
                 tahminSayiBasamaklar = basamklariAyir(tahmin);
@@ -54,17 +64,22 @@ public class SayiTahminOyunu {
             ;
             //7.Adım
             int artidegeri = artiDegeriniHesapla(uretilenSayiBasamaklar, tahminSayiBasamaklar);
-            System.out.println("artidegeri = " + artidegeri);
+            System.out.println("Doğru Yer = " + artidegeri);
             //8.Adım
             int eksidegeri = eksiDegeriniHesapla(uretilenSayiBasamaklar, tahminSayiBasamaklar);
-            System.out.println("eksidegeri = " + eksidegeri);
+            System.out.println("Yanlış Yer = " + eksidegeri);
             puan -= 10;
             if (artidegeri == 4) {
                 System.out.println("Kazandınız!");
+                System.out.println("Tahmin Ettiğiniz Sayı : " + uretilenSayi);
+                System.out.println("Puanınız : " + puan);
                 break;
             }
         }
-        if (puan == -100) System.out.println("Kaybettiniz!");
+        if (puan == -0) {
+            System.out.println("Kaybettiniz!");
+            System.out.println("Tahmin Edemediğiniz Sayı : " + uretilenSayi);
+        }
     }
 
     private static int uretRakamlariFarkliSayi(int basamakSayisi) {
