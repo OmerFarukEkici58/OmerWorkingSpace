@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="OmerWorkingSpace:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OmerWorkingSpace_jar</output-path>
+    <root id="archive" name="OmerWorkingSpace.jar">
+      <element id="module-output" name="OmerWorkingSpace" />
+    </root>
+  </artifact>
+</component>
